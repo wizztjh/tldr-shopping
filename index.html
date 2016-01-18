@@ -5,6 +5,7 @@
     <title>Hello, World! • A-Frame</title>
     <meta name="description" content="Hello, World! • A-Frame">
     <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
+    <script src="vendor/aframe-obj-loader-component.js"></script>
   </head>
   <body>
     <a-scene>
@@ -13,7 +14,12 @@
       <!-- Model -->
       <a-entity id="model" position="0 0 -2">
         <a-animation attribute="rotation" from="0 -30 0" to="0 330 0" dur="15000" easing="linear" repeat="inifite"></a-animation>
-        <a-model position="-.35 0 .55" rotation="0 -20 0" scale="1.5 1.5 1.5" src="_models/man/man.dae"></a-model>
+        <a-entity position='0 1.5 0' scale="3 3 3" obj-loader="src: url(./_models/person/model_mesh.obj);
+                              mtl: url(./_models/person/model_mesh.obj.mtl);">
+        </a-entity>
+        <a-entity id='shoe' position='0 -1 0.3' rotation='0 180 0' scale="0 0 0" obj-loader="src: url(./_models/shoe/shoe.obj);
+                              mtl: url(./_models/shoe/shoe.mtl);">
+        </a-entity>
         <a-image src="_images/radial-shadow-2.png" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-image>
       </a-entity>
 
@@ -41,6 +47,8 @@
 
       <!-- Shoes thumbnail -->
       <a-curvedimage src="shoes.png" radius="5.7" theta-length="18" height=".8" position="0 0.9 0" scale=".4 .4 .4">
+        <a-mouseenter target='#shoe' scale="0.02 0.02 0.02"></a-mouseenter>
+        <a-mouseleave target='#shoe' scale="0 0 0"></a-mouseleave>
         <a-animation attribute="rotation" from="0 -20 0" to="0 -30 0" begin="750" dur="1000"></a-animation>
       </a-curvedimage>
 
